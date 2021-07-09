@@ -1,1 +1,102 @@
-<p>posts works!</p>
+<div class="container-md my-4 rounded shadow-sm">
+  <div class="row">
+    <div class="col-12 d-flex justify-content-between align-items-center px-4">
+      <div class="display-4">Posts</div>
+      <button
+        class="btn btn-primary"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapseExample"
+        aria-expanded="false"
+        aria-controls="collapseExample"
+      >
+        + New
+      </button>
+    </div>
+    <div class="col-12 px-4">
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+          <form (ngSubmit)="onSubmit()">
+            <div class="form-row align-items-center">
+              <div class="col-4 my-1">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">Choose user</div>
+                  </div>
+                  <select
+                    class="custom-select mr-sm-2"
+                    id="inlineFormCustomSelect"
+                    name="userId"
+                    [formControl]="userId"
+                    required
+                  >
+                    <option *ngFor="let user of users" value="{{ user.id }}">
+                      {{ user.name }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-7 my-1">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">Post</div>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inlineFormInput"
+                    placeholder="Content of Post"
+                    name="content"
+                    [formControl]="content"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="col-1 my-1">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-4 p-4" *ngFor="let post of posts">
+      <div class="card" style="width: 100%">
+        <img
+          src="../../assets/images/bundo-kim-S-TcfjrYVKo-unsplash.jpg"
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body">
+          <h5 class="card-title">Post: {{ post.id }}</h5>
+          <p class="card-text">
+            {{ post.content }}
+          </p>
+          <!-- <a href="#" class="btn btn-primary btn-sm mr-2">Comment</a> -->
+          <button
+            class="btn btn-success btn-sm mr-2"
+            (click)="updateStatus(post)"
+            >Update</button
+          >
+          <button
+            class="btn btn-danger btn-sm"
+            (click)="post.id ? deletePost(post.id) : null"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="updateState" class="update-post p-4">
+  <div class="wrap rounded shadow-sm p-4">
+    <h1 class="mb-4">Update content Post</h1>
+    <input type="text" class="form-control mb-4" [formControl]=contentUpdated />
+    <span>
+    <button class="btn btn-secondary mr-2" (click)="cancelUpdate()">cancel</button>
+    <button class="btn btn-success" (click)="updatePost()">Update</button></span>
+  </div>
+</div>

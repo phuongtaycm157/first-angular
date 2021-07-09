@@ -7,31 +7,48 @@
       "password": "123456"
     },
     {
-      "name": "Nguyen Van R",
-      "email": "r@email.com",
-      "password": "123456",
-      "id": 2
+      "id": 5,
+      "name": "Vo Hoang Han",
+      "email": "han@email.com",
+      "password": "123456"
     },
     {
-      "name": "Pham Van B",
-      "email": "b@gmail.com",
+      "name": "Phan Tan Dung",
+      "email": "dung@email.com",
       "password": "123456",
-      "id": 3
+      "id": 6
+    },
+    {
+      "name": "Pham Huy Hoang",
+      "email": "hoang@email.com",
+      "password": "123456",
+      "id": 8
     }
   ],
   "posts": [
     {
       "id": 1,
-      "content": "this is content of posts",
-      "userId": 1
+      "userId": 1,
+      "content": "this is a first post"
+    },
+    {
+      "content": "this is a post of Huy Hoang",
+      "userId": 8,
+      "id": 4
     }
   ],
   "comments": [
     {
-      "id": 1,
-      "message": "this is first message",
+      "message": "this is first comment",
       "userId": 1,
-      "postId": 1
+      "postId": 1,
+      "id": 1
+    },
+    {
+      "message": "the comment of Pham Huy Hoang in post 1",
+      "userId": 8,
+      "postId": 1,
+      "id": 6
     }
   ]
 }

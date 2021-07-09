@@ -1,0 +1,52 @@
+<div class="container-md my-4">
+  <div class="row">
+    <div class="d-none d-md-block col-md-3"></div>
+    <div class="col-12 col-md-6">
+      <form (ngSubmit)="onSubmit(formNewUser)" #formNewUser="ngForm" class="rounded bg-light shadow-sm p-4">
+        <div class="form-group">
+            <label for="exampleInput1">Full name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="exampleInput1"
+              ngModel
+              name="name"
+              required
+            />
+            <small id="emailHelp" class="form-text text-muted"
+              >Your fullname is neccessary</small
+            >
+          </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            ngModel
+            name="email"
+            required
+            email
+          />
+          <small id="emailHelp" class="form-text text-muted"
+            >We'll never share your email with anyone else.</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+            ngModel
+            name="password"
+            required
+          />
+        </div>
+        <button type="button" class="btn btn-danger mr-2" (click)="cancel()">Cancel</button>
+        <button type="submit" class="btn btn-primary" [class.disabled]="formNewUser.invalid">Submit</button>
+      </form>
+    </div>
+    <div class="d-none d-md-block col-md-3"></div>
+  </div>
+</div>

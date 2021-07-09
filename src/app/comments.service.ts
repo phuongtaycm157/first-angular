@@ -43,14 +43,17 @@ export class CommentsService {
       .pipe(retry(3), catchError(this.handleError));
   }
   search(userId?: number, postId?: number): Observable<CommentsSchema> {
-    let params = new HttpParams();
-    if (userId) {
-      params.append('userId', userId);
+    let options = {};
+    if (!postId && userId) {
+      options = { params: new HttpParams().set('userId', userId) };
+    } else if (postId && !userId) {
+      options = { params: new HttpParams().set('postId', postId) };
+    } else if (postId && userId) {
+      options = {
+        params: new HttpParams().set('userId', userId).set('postId', postId),
+      };
     }
-    if (postId) {
-      params.append('postId', postId);
-    }
-    const options = { params };
+    console.log(options);
     return this.http
       .get<CommentsSchema>(this.commentsUrl, options)
       .pipe(retry(3), catchError(this.handleError));
@@ -65,9 +68,9 @@ export class CommentsService {
       .get<CommentsSchema>(this.commentsUrl, options)
       .pipe(retry(3), catchError(this.handleError));
   }
-  post(post: CommentSchema): Observable<CommentSchema> {
+  post(comment: CommentSchema): Observable<CommentSchema> {
     return this.http
-      .post<CommentSchema>(this.commentsUrl, post, this.httpHeader)
+      .post<CommentSchema>(this.commentsUrl, comment, this.httpHeader)
       .pipe(catchError(this.handleError));
   }
   delete(id: number): Observable<unknown> {
@@ -76,10 +79,10 @@ export class CommentsService {
       .delete(url, this.httpHeader)
       .pipe(catchError(this.handleError));
   }
-  put(post: CommentSchema): Observable<CommentSchema> {
-    const url = `${this.commentsUrl}/${post.id}`;
+  put(comment: CommentSchema): Observable<CommentSchema> {
+    const url = `${this.commentsUrl}/${comment.id}`;
     return this.http
-      .put<CommentSchema>(url, post, this.httpHeader)
+      .put<CommentSchema>(url, comment, this.httpHeader)
       .pipe(catchError(this.handleError));
   }
 }

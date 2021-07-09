@@ -1,1 +1,44 @@
-<p>Users component work!</p>
+<div class="container-md bg-light rounded my-4 shadow-sm">
+  <div class="row">
+    <div class="col-12 d-flex justify-content-between align-items-center">
+      <div class="display-4 mb-4">Users List</div>
+      <a routerLink="/users/new" class="btn btn-primary">+ New</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-hover">
+        <thead class="">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">User Name</th>
+            <th scope="col">User Email</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <th scope="row">{{ user.id }}</th>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+              <a
+                routerLink="/users/{{ user.id }}/update"
+                type="button"
+                class="btn btn-primary mr-2"
+                >Update</a
+              >
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="user.id ? deleteUser(user.id) : null"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
