@@ -46,12 +46,15 @@
       <nav aria-label="Page navigation example">
         <ul class="pagination">
           <li class="page-item" *ngIf="page !== 1">
-            <a class="page-link" routerLink="/users/">First</a>
+            <a class="page-link" (click)="goOtherPage(1)" routerLink="/users/"
+              >First</a
+            >
           </li>
           <li class="page-item" *ngIf="prevPage">
             <a
               class="page-link"
               routerLink="/users/{{ prevPage }}/pages"
+              (click)="goOtherPage(prevPage)"
               >{{ prevPage }}</a
             >
           </li>
@@ -62,11 +65,15 @@
             <a
               class="page-link"
               routerLink="/users/{{ nextPage }}/pages"
+              (click)="goOtherPage(nextPage)"
               >{{ nextPage }}</a
             >
           </li>
           <li class="page-item" *ngIf="page !== lastPage">
-            <a class="page-link" routerLink="/users/{{ lastPage }}/pages"
+            <a
+              class="page-link"
+              (click)="goOtherPage(lastPage)"
+              routerLink="/users/{{ lastPage }}/pages"
               >Last</a
             >
           </li>

@@ -49,6 +49,14 @@ export class UsersComponent implements OnInit {
       });
     }
   }
+  goOtherPage(i: number) {
+    this.page = i;
+    this.userService.paginate(i).subscribe((users: UsersSchema) => {
+      this.users = users;
+    });
+    this.nextPage = this.page < this.lastPage ? this.page + 1 : undefined;
+    this.prevPage = this.page > 1 ? this.page - 1 : undefined;
+  }
   addUser(newUser: UserSchema) {
     this.userService.post(newUser).subscribe((user) => this.users?.push(user));
   }
