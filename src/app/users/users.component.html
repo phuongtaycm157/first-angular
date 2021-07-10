@@ -41,4 +41,37 @@
       </table>
     </div>
   </div>
+  <div class="row">
+    <div class="col-12 d-flex justify-content-center">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item" *ngIf="page !== 1">
+            <a class="page-link" routerLink="/users/">First</a>
+          </li>
+          <li class="page-item" *ngIf="prevPage">
+            <a
+              class="page-link"
+              routerLink="/users/{{ prevPage }}/pages"
+              >{{ prevPage }}</a
+            >
+          </li>
+          <li class="page-item active">
+            <a class="page-link">{{ page }}</a>
+          </li>
+          <li class="page-item" *ngIf="nextPage">
+            <a
+              class="page-link"
+              routerLink="/users/{{ nextPage }}/pages"
+              >{{ nextPage }}</a
+            >
+          </li>
+          <li class="page-item" *ngIf="page !== lastPage">
+            <a class="page-link" routerLink="/users/{{ lastPage }}/pages"
+              >Last</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
 </div>
